@@ -1,9 +1,42 @@
-import Link from "next/link";
-import type { ReactNode } from "react";
+"use client";
 
-export function Header(){return <header className="site-header"><Link className="wordmark" href="/">Karan Sangoi<span>.</span></Link><nav aria-label="Primary navigation"><Link href="/websites">Websites</Link><Link href="/software">Software</Link><Link href="/projects">Projects</Link><Link href="/about">About</Link><Link href="/blog">Writing</Link><Link className="nav-cta" href="/contact">Start a project</Link></nav></header>}
-export function Footer(){return <footer><div><p className="eyebrow">INDEPENDENT DIGITAL STUDIO</p><h2>Good work starts with<br/>an honest conversation.</h2><Link className="text-link" href="/contact">Tell me what you need →</Link></div><div className="footer-meta"><p>Websites, software and automation,<br/>built directly with Karan.</p><div><Link href="/websites">Websites</Link><Link href="/software">Software & automation</Link><Link href="/projects">Projects</Link><Link href="/about">About</Link></div><p>© {new Date().getFullYear()} Karan Sangoi.<br/>All rights reserved.</p></div></footer>}
+import Link from "next/link";
+import { useEffect, useState, type FormEvent, type ReactNode } from "react";
+
+type IconName = "spark" | "code" | "check" | "x" | "arrow" | "mail" | "phone" | "layers" | "globe" | "bolt";
+
+export function Icon({name}:{name:IconName}) {
+  const paths:Record<IconName,ReactNode> = {
+    spark:<><path d="m12 3-1.4 4.1L6.5 8.5l4.1 1.4L12 14l1.4-4.1 4.1-1.4-4.1-1.4L12 3Z"/><path d="m5 15-.7 2.3L2 18l2.3.7L5 21l.7-2.3L8 18l-2.3-.7L5 15Z"/></>,
+    code:<><path d="m8 9-3 3 3 3M16 9l3 3-3 3M14 5l-4 14"/></>,
+    check:<path d="m5 12 4 4L19 6"/>, x:<path d="M6 6l12 12M18 6 6 18"/>,
+    arrow:<path d="M5 12h14m-5-5 5 5-5 5"/>, mail:<><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></>,
+    phone:<><path d="M8 3H5a2 2 0 0 0-2 2c0 8.8 7.2 16 16 16a2 2 0 0 0 2-2v-3l-4-1-2 3c-4-1.5-7.5-5-9-9l3-2-1-4Z"/></>,
+    layers:<><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></>, globe:<><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></>,
+    bolt:<path d="m13 2-8 12h7l-1 8 8-12h-7l1-8Z"/>
+  };
+  return <span className="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24">{paths[name]}</svg></span>;
+}
+
+export function Header(){
+  const [open,setOpen]=useState(false); const [small,setSmall]=useState(false);
+  useEffect(()=>{const onScroll=()=>setSmall(scrollY>24);onScroll();addEventListener("scroll",onScroll,{passive:true});return()=>removeEventListener("scroll",onScroll)},[]);
+  const links=[['/websites','Websites'],['/software','Software'],['/projects','Projects'],['/about','About'],['/blog','Writing']];
+  return <header className={`site-header ${small?'scrolled':''}`}><Link className="wordmark" href="/">Karan Sangoi<span>.</span></Link><nav aria-label="Primary navigation">{links.map(([href,label])=><Link key={href} href={href}>{label}</Link>)}<Link className="nav-cta" href="/contact">Start a project <Icon name="arrow"/></Link></nav><button className="menu-button" onClick={()=>setOpen(!open)} aria-expanded={open} aria-controls="mobile-nav"><span/><span/></button>{open&&<div className="mobile-sheet" id="mobile-nav">{links.map(([href,label])=><Link onClick={()=>setOpen(false)} key={href} href={href}>{label}</Link>)}<Link className="button" href="/contact">Start a project</Link></div>}</header>
+}
+
+export function Reveal({children,className=""}:{children:ReactNode,className?:string}){const [visible,setVisible]=useState(false);const [node,setNode]=useState<HTMLDivElement|null>(null);useEffect(()=>{if(!node)return;const observer=new IntersectionObserver(([entry])=>{if(entry.isIntersecting){setVisible(true);observer.disconnect()}},{threshold:.05,rootMargin:"0px 0px 12% 0px"});observer.observe(node);const fallback=setTimeout(()=>setVisible(true),2500);return()=>{observer.disconnect();clearTimeout(fallback)}},[node]);return <div ref={setNode} className={`reveal ${visible?'is-visible':''} ${className}`}>{children}</div>}
+
+export function Footer(){return <footer><div className="footer-person"><DesignedPlaceholder kind="photo" label="Karan’s personal photograph" compact/><div><p className="eyebrow">INDEPENDENT DIGITAL STUDIO</p><h2>Good work starts with an honest conversation.</h2><p>Websites, software and automation, built directly with Karan.</p><Link className="text-link" href="/contact">Tell me what you need <Icon name="arrow"/></Link></div></div><div className="footer-meta"><p>© {new Date().getFullYear()} Karan Sangoi.<br/>All rights reserved.</p><div><Link href="/websites">Websites</Link><Link href="/software">Software & automation</Link><Link href="/projects">Projects</Link><Link href="/about">About</Link></div><div><span className="tag">AWAITING-KARAN</span><span>Verified LinkedIn URL</span></div></div></footer>}
 export function Page({children}: {children:ReactNode}){return <><Header/><main>{children}</main><Footer/></>}
-export function Intro({kicker,title,copy}: {kicker:string,title:string,copy:string}){return <section className="page-intro"><p className="eyebrow">{kicker}</p><h1>{title}</h1><p className="lede">{copy}</p></section>}
-export function Placeholder({label,className=""}:{label:string,className?:string}){return <div className={`placeholder ${className}`}><span>AWAITING-KARAN</span><p>{label}</p></div>}
-export function CTA(){return <section className="final-cta"><p className="eyebrow">READY WHEN YOU ARE</p><h2>Let’s make your next digital move a clear one.</h2><Link className="button light" href="/contact">Start a conversation</Link></section>}
+export function Intro({kicker,title,copy,icon="spark"}: {kicker:string,title:string,copy:string,icon?:IconName}){return <section className="page-intro atmosphere"><Reveal><Icon name={icon}/><p className="eyebrow">{kicker}</p><h1>{title}</h1><p className="lede">{copy}</p></Reveal></section>}
+export function DesignedPlaceholder({label,kind="asset",compact=false}:{label:string,kind?:string,compact?:boolean}){return <div className={`designed-placeholder ${compact?'compact':''}`}><span className="placeholder-art" aria-hidden="true">{kind==="photo"?<svg viewBox="0 0 100 100"><circle cx="50" cy="35" r="16"/><path d="M20 92c2-28 16-40 30-40s28 12 30 40"/></svg>:<Icon name="layers"/>}</span><div><span className="tag">AWAITING-KARAN</span><p>{label}</p></div></div>}
+export function CTA(){return <section className="final-cta"><div><p className="eyebrow">READY WHEN YOU ARE</p><h2>Let’s make your next digital move a clear one.</h2></div><Link className="button light" href="/contact">Start a conversation <Icon name="arrow"/></Link></section>}
+
+const concepts={pest:{name:"Northline Pest Control",kicker:"A calmer home starts here",copy:"Straightforward pest protection for homes and local businesses.",tone:"mint"},interior:{name:"Atelier June",kicker:"Interiors made personal",copy:"Considered spaces, shaped around the way you live.",tone:"sand"},moving:{name:"Good Move Co.",kicker:"Moving day, made lighter",copy:"Careful local moves with a clear plan from start to finish.",tone:"blue"}} as const;
+export type ConceptKind=keyof typeof concepts;
+export function BrowserConcept({kind,small=false}:{kind:ConceptKind,small?:boolean}){const c=concepts[kind];return <div className={`browser-concept ${c.tone} ${small?'small':''}`}><div className="browser-bar"><i/><i/><i/><span>Sample concept — demonstration</span></div><div className="concept-nav"><b>{c.name}</b><span>Services&nbsp;&nbsp; About&nbsp;&nbsp; Contact</span></div><div className="concept-body"><span className="concept-label">SAMPLE CONCEPT</span><h3>{c.kicker}</h3><p>{c.copy}</p><button tabIndex={-1}>Get a quote</button><div className="concept-shape"/></div></div>}
+
+export function ProcessVisual({step}:{step:number}){return <div className={`process-visual process-${step}`} aria-hidden="true">{step===1&&<><span className="bubble one">Your goals</span><span className="bubble two">Services + photos</span></>}{step===2&&<><span className="wire w1"/><span className="wire w2"/><span className="wire w3"/></>}{step===3&&<div className="code-card"><i>&lt;section&gt;</i><b>Your site</b><i>&lt;/section&gt;</i></div>}{step===4&&<><svg viewBox="0 0 180 110"><circle cx="90" cy="55" r="38"/><path d="M52 55h76M90 17c17 17 17 59 0 76M90 17c-17 17-17 59 0 76"/><path className="launch" d="m120 32 28-14-14 28-7-7-14 5 5-14 2 2Z"/></svg></>}</div>}
+
+export function ContactForm(){const [sent,setSent]=useState(false);function submit(e:FormEvent){e.preventDefault();setSent(true)}return sent?<div className="form-success" role="status"><Icon name="check"/><p className="eyebrow">MESSAGE READY</p><h2>Thanks for the context.</h2><p>This preview form has no backend yet. Please email the same details to <a href="mailto:hello@imkaransangoi.com">hello@imkaransangoi.com</a>.</p><button className="button outline" onClick={()=>setSent(false)}>Back to form</button></div>:<form className="contact-form glass-card" onSubmit={submit}><label>Your name<input name="name" required/></label><label>Business name<input name="business"/></label><label>Email<input name="email" type="email" required/></label><label>What do you need?<select name="service"><option>Business website</option><option>Software or automation</option><option>Not sure yet</option></select></label><label>Tell me about the project<textarea name="message" required/></label><button className="button" type="submit">Send project details <Icon name="arrow"/></button><p className="form-note">Preview form — no backend connected yet.</p></form>}
