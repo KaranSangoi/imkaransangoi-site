@@ -1,0 +1,3 @@
+import {notFound} from "next/navigation";import {Page} from "@/components/Site";import {getPost,getPosts,markdownToHtml} from "@/lib/posts";
+export function generateStaticParams(){return getPosts().map(p=>({slug:p.slug}))}
+export default async function Post({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const post=getPost(slug);if(!post)notFound();return <Page><section className="page-intro"><p className="eyebrow">{post.date||"WRITING"}</p><h1>{post.title}</h1><p className="lede">{post.excerpt}</p></section><article className="prose page-body" dangerouslySetInnerHTML={{__html:markdownToHtml(post.content)}}/></Page>}
