@@ -1,0 +1,9 @@
+import Link from "next/link";
+import type { ReactNode } from "react";
+
+export function Header(){return <header className="site-header"><Link className="wordmark" href="/">Karan Sangoi<span>.</span></Link><nav aria-label="Primary navigation"><Link href="/websites">Websites</Link><Link href="/software">Software</Link><Link href="/projects">Projects</Link><Link href="/about">About</Link><Link href="/blog">Writing</Link><Link className="nav-cta" href="/contact">Start a project</Link></nav></header>}
+export function Footer(){return <footer><div><p className="eyebrow">INDEPENDENT DIGITAL STUDIO</p><h2>Good work starts with<br/>an honest conversation.</h2><Link className="text-link" href="/contact">Tell me what you need →</Link></div><div className="footer-meta"><p>Websites, software and automation,<br/>built directly with Karan.</p><div><Link href="/websites">Websites</Link><Link href="/software">Software & automation</Link><Link href="/projects">Projects</Link><Link href="/about">About</Link></div><p>© {new Date().getFullYear()} Karan Sangoi.<br/>All rights reserved.</p></div></footer>}
+export function Page({children}: {children:ReactNode}){return <><Header/><main>{children}</main><Footer/></>}
+export function Intro({kicker,title,copy}: {kicker:string,title:string,copy:string}){return <section className="page-intro"><p className="eyebrow">{kicker}</p><h1>{title}</h1><p className="lede">{copy}</p></section>}
+export function Placeholder({label,className=""}:{label:string,className?:string}){return <div className={`placeholder ${className}`}><span>AWAITING-KARAN</span><p>{label}</p></div>}
+export function CTA(){return <section className="final-cta"><p className="eyebrow">READY WHEN YOU ARE</p><h2>Let’s make your next digital move a clear one.</h2><Link className="button light" href="/contact">Start a conversation</Link></section>}
