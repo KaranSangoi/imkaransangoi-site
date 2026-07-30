@@ -81,3 +81,11 @@ brief, July 2026) + chat decisions. This file is the single source of truth.
   copy audit — every section must talk about the reader; (b) visual QA at
   minimum five widths: 390 / 768 / 1024 / 1280 / 1680, screenshots reviewed
   by Claude.
+- D24. Visual direction LOCKED (Karan, 2026-07-30): dark navy + gold premium
+  aesthetic (the Claude Design direction), replacing the light warm-paper V2
+  palette. Serif display + clean sans, gold accent on deep navy, glass cards,
+  generous section rhythm. All future pages and the demo-site archetypes
+  inherit this identity unless Karan changes it.
+- D25. Design pipeline: Claude Design (claude.ai/design) produces the visual
+  reference HTML → Claude QAs copy + honesty → Codex implements it in the
+  Next.js repo → Claude runs multi-width visual QA → auto-merge → preview.
