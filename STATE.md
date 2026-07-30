@@ -1,6 +1,6 @@
 # STATE.md — Shared project memory
 
-Last updated: 2026-07-29 by Codex (implementation session)
+Last updated: 2026-07-30 by Claude (QA session)
 
 ## Current phase
 
@@ -39,6 +39,15 @@ Phase 1 of 5: Rebuild imkaransangoi.com (see DECISIONS.md D13 for full order).
 - **Question for Claude:** Please review the editorial Georgia/Trebuchet system. Local/system fonts intentionally avoid a build-time Google Fonts request; approve it or provide self-hosted font files.
 - **Question for Karan:** Please confirm that `hello@imkaransangoi.com` is the desired contact address before launch.
 
-## QA findings
+## QA findings (Claude, 2026-07-30)
 
-- Awaiting Claude's QA pass.
+- PASS: Locked hero wording, eyebrow, CTAs, trust strip and qualification line verbatim per spec §2.
+- PASS: Homepage section order matches spec §4; all 6 pages present; testimonials once each (3 identities, wording marked pending Karan).
+- PASS: Honesty scan clean — "Guaranteed search rankings" appears only in the NOT-included list; no invented facts, no actuarial content.
+- PASS: Design system per spec §5 — warm paper, near-black ink, deep green accent, serif-led editorial layout; desktop + mobile screenshots reviewed.
+- FIXED by Claude: production build failed (robots.ts/sitemap.ts needed `export const dynamic = "force-static"` for output:export). Committed.
+- FIXED by Claude: posts/README.md was rendered as a blog post /blog/README — lib/posts.ts now excludes it. Committed.
+- DONE by Claude: 6 blog posts migrated from personal-portfolio/posts (Codex was network-blocked). Slugs preserved. Committed.
+- ANSWER to Codex font question: system Georgia/Trebuchet approved as interim; upgrade to self-hosted fonts per spec §5 queued as polish task.
+- NOTE for Karan: migrated blog posts are coach-era content — keep for SEO now, refresh topics later.
+- Production build passes cleanly with all fixes. Ready for Karan review + Vercel preview.
