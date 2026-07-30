@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style data-omelette-injected>html,body{background:transparent}</style><script data-omelette-injected>(()=>{{const W=new URLSearchParams(location.search).get("theme");if(W==="light"||W==="dark"){document.documentElement.dataset.theme=W}}{if(new URLSearchParams(location.search).get("_omthumb")==="1"){const W=(q)=>{const X=q.focus;if(!X)return;q.focus=function(H){X.call(this,{...H,preventScroll:true})}};W(HTMLElement.prototype);W(SVGElement.prototype);if(typeof MathMLElement!=="undefined"){W(MathMLElement.prototype)}const $=(q)=>{q.removeAttribute("autofocus");q.inert=true;if(!(q instanceof HTMLElement))q.removeAttribute("tabindex")};const z=(q)=>{if(q.hasAttribute("autofocus"))$(q);for(const X of q.querySelectorAll("[autofocus]")){$(X)}};z(document.documentElement);new MutationObserver((q)=>{for(const X of q){for(const H of X.addedNodes){if(H.nodeType===1)z(H)}}}).observe(document,{childList:true,subtree:true})}}{const W=()=>{try{if(document.querySelector('meta[name="color-scheme"]'))return;const $=getComputedStyle(document.documentElement).getPropertyValue("color-scheme").trim();if($&&$!=="normal")return;const z=(j)=>{if(!j)return null;const F=getComputedStyle(j).backgroundColor.match(/^rgba?\(\s*(\d+)[,\s]+(\d+)[,\s]+(\d+)(?:[,\s/]+([\d.]+%?))?\s*\)$/);if(!F)return null;const G=F[4]==null?1:parseFloat(F[4])/(F[4].endsWith("%")?100:1);if(G<0.99)return null;return[+F[1],+F[2],+F[3]]};const q=z(document.body)||z(document.documentElement);if(!q)return;const X=(j)=>{const F=j/255;return F<=0.04045?F/12.92:((F+0.055)/1.055)**2.4};const H=0.2126*X(q[0])+0.7152*X(q[1])+0.0722*X(q[2]);document.documentElement.style.setProperty("color-scheme",H<0.4?"dark":"light")}catch{}};if(document.readyState==="complete")W();else window.addEventListener("load",W)}var b=[];var p=false;var u=30000;var d=3000;document.addEventListener("DOMContentLoaded",()=>{const W=window.Babel;const $="om-src-id";if(W&&W.registerPlugin&&!(W.availablePlugins&&W.availablePlugins[$])){W.registerPlugin($,({types:H})=>({visitor:{JSXOpeningElement(j,F){const G=j.node;if(G.name&&G.name.type==="JSXMemberExpression")return;for(let Q=0;Q<G.attributes.length;Q++){const V=G.attributes[Q];if(V.type==="JSXAttribute"&&V.name&&V.name.name==="data-om-id")return}const P=F.file&&F.file.opts&&F.file.opts.filename||"?";const R=G.loc&&G.loc.start;const J=`jsx:${P}:${G.start??0}:${R?R.line:0}:${R?R.column+1:0}`;G.attributes.push(H.jsxAttribute(H.jsxIdentifier("data-om-id"),H.stringLiteral(J)))}}}))}const z="om-text-extract";let q=false;if(p&&W&&W.registerPlugin&&!(W.availablePlugins&&W.availablePlugins[z])){const H=window.React;if(H&&H.useSyncExternalStore&&H.createElement){q=true;const j={};const F=new Set;let G=0;window.__omTextO=j;window.__omTextSet=(J)=>{for(const Q in J){const V=J[Q];if(V==null)delete j[Q];else j[Q]=V}G++;F.forEach((Q)=>Q())};const P=(J)=>{F.add(J);return()=>F.delete(J)};const R=()=>G;window.__OmT=function J(Q){H.useSyncExternalStore(P,R,R);return H.createElement("span",{"data-om-text":Q.i,className:"__om-t"},Q.i in j?j[Q.i]:Q.children)};W.registerPlugin(z,({types:J})=>{const Q={style:1,script:1,noscript:1,textarea:1,title:1,option:1,text:1,tspan:1,textPath:1};const V={placeholder:1,alt:1,title:1,label:1,"aria-label":1,"aria-description":1,"aria-placeholder":1};const Y=(K,M)=>J.logicalExpression("??",J.memberExpression(J.logicalExpression("||",J.memberExpression(J.identifier("window"),J.identifier("__omTextO")),J.objectExpression([])),J.stringLiteral(K),true),M);const Z=(K)=>K.file&&K.file.opts&&K.file.opts.filename||"?";const B=(K)=>K.file&&K.file.code||"";const U=(K,M)=>{const L=(D)=>D&&D.start!=null&&D.end!=null&&(D.type==="StringLiteral"||D.type==="TemplateLiteral"&&D.expressions.length===0)?[D.start,D.end]:null;const N=L(M);if(N)return N;if(M&&M.type==="Identifier"){const D=K.scope.getBinding(M.name);if(D&&D.constant&&D.path.node.type==="VariableDeclarator"){return L(D.path.node.init)}}return null};const x=(K,M,L)=>{const N=K.node;let D=false;const f=(w,A)=>{D=true;return J.jsxElement(J.jsxOpeningElement(J.jsxIdentifier("__OmT"),[J.jsxAttribute(J.jsxIdentifier("i"),J.stringLiteral(w))],false),J.jsxClosingElement(J.jsxIdentifier("__OmT")),[A],false)};const C=N.children.map((w)=>{if(w.type==="JSXText"){if(w.start==null||w.end==null)return w;const A=L.slice(w.start,w.end);const S=A.length-A.trimStart().length;const O=A.length-A.trimEnd().length;if(S+O>=A.length)return w;return f(`txt:${M}:${w.start+S}:${w.end-O}`,w)}if(w.type==="JSXExpressionContainer"){const A=U(K,w.expression);if(A)return f(`str:${M}:${A[0]}:${A[1]}`,w)}return w});if(D)N.children=C};return{visitor:{JSXOpeningElement(K,M){const L=K.node;const N=Z(M);const D={};for(let f=0;f<L.attributes.length;f++){const C=L.attributes[f];if(C.type!=="JSXAttribute"||!C.name)continue;const w=C.name.name;if(!V[w])continue;if(!C.value||C.value.type!=="StringLiteral")continue;if(C.value.start==null||C.value.end==null)continue;const A=`txt:${N}:${C.value.start}:${C.value.end}`;D[w]=A;C.value=J.jsxExpressionContainer(Y(A,J.stringLiteral(C.value.value)))}if(Object.keys(D).length){L.attributes.push(J.jsxAttribute(J.jsxIdentifier("data-om-text-attrs"),J.stringLiteral(JSON.stringify(D))))}},JSXElement(K,M){const L=K.node.openingElement;const N=L&&L.name&&L.name.name;if(N==="__OmT")return;if(typeof N==="string"&&Q[N])return;x(K,Z(M),B(M))},JSXFragment(K,M){x(K,Z(M),B(M))}}}})}}const X=q?["transform-react-jsx-source",$,z]:["transform-react-jsx-source",$];document.querySelectorAll('script[type="text/babel"],script[type="text/jsx"]').forEach((H,j)=>{const F=H.getAttribute("data-plugins")||"";const G=X.filter((P)=>F.indexOf(P)<0);if(G.length){H.setAttribute("data-plugins",F?`${F},${G.join(",")}`:G.join(","))}if(!H.hasAttribute("data-filename")){H.setAttribute("data-filename",H.getAttribute("src")||`inline-${j}`)}})});var I=window.parent;var g="not editable here — open the project in the Claude Design editor to save";var n=()=>Promise.resolve({persisted:false,noHost:true,reason:g});var k=n;var v="data/storage.json";var l=()=>{try{const W=new URL(document.baseURI);const $=W.pathname.match(/\/projects\/([^/]+)\/serve\//);if($)return $[1];return W.hostname.split(".")[0]||""}catch{return location.hostname.split(".")[0]||""}};var o=()=>{try{const W=new URL(document.baseURI);const $=W.pathname.indexOf("/serve/");if($>=0)return W.origin+W.pathname.slice(0,$+"/serve/".length)+v}catch{}return"./"+v};var E=null;var _=()=>{if(!E){E=fetch(o(),{cache:"no-store"}).then((W)=>{if(W.ok)return W.text();return W.status===404?"":null}).catch(()=>null).then((W)=>{if(W===null){E=null;return null}const $=new Map;if(!W)return $;let z;try{z=JSON.parse(W)}catch{console.warn("[omelette.storage] "+v+" is not valid JSON; treating the store as unreadable so a save cannot overwrite the "+"hand-edited bytes. Fix the JSON (or delete the file) to re-enable persistence.");E=null;return null}if(z===null||typeof z!=="object"||Array.isArray(z)){console.warn("[omelette.storage] "+v+" doesn't hold a JSON object; treating the store as unreadable so a save cannot "+"overwrite the hand-edited bytes. Make the top level a JSON object to re-enable persistence.");E=null;return null}const q=z;if("data"in q){const X=q.data;if(X===null||typeof X!=="object"||Array.isArray(X)){console.warn("[omelette.storage] "+v+' has a "data" field that is not a JSON object; treating the store as unreadable so a '+'save cannot overwrite the hand-edited bytes. Make "data" a JSON object to re-enable persistence.');E=null;return null}const H=q._meta;const j=H!==null&&typeof H==="object"?H.project:undefined;if(typeof j==="string"&&j!==""&&j!==l())return $;for(const F of Object.keys(X))$.set(F,X[F]);return $}for(const X of Object.keys(q)){if(X!=="_meta")$.set(X,q[X])}return $})}return E};var y=(W)=>k(v,JSON.stringify({_meta:{project:l(),version:1},data:Object.fromEntries(W)},null,2));var m=Promise.resolve();var T=(W)=>{const $=m.then(W);m=$.then(()=>{return},()=>{return});return $};var s=/sk-(?:ant-)?[A-Za-z0-9_-]{16,}|AKIA[0-9A-Z]{16}|gh[pousr]_[A-Za-z0-9]{20,}|xox[a-z]-[A-Za-z0-9][A-Za-z0-9-]{9,}|AIza[0-9A-Za-z_-]{30,}|-----BEGIN [A-Z ]*PRIVATE KEY-----/;var a=/password|passwd|secret|api[_-]?key|access[_-]?token|auth[_-]?token|credential/i;var r=(W,$,z)=>{if(s.test($)||a.test(W)&&typeof z==="string"&&z.length>=8){console.warn('[omelette.storage] the value for "'+W+'" looks like a credential. The storage file is a plaintext project file — visible to '+"everyone with project access and copied when the project is duplicated. Do not store secrets here.")}};var c={persisted:false,reason:"could not load the existing store — not overwriting it"};var i={persisted:false,reason:"stored value changed since a failed read — re-read this key before saving"};var h=new Set;var t={get:(W)=>{if(typeof W!=="string"){return Promise.reject(new TypeError("storage.get: key must be a string"))}return T(_).then(($)=>{if($===null){h.add(W);return null}h.delete(W);if(!$.has(W))return null;const z=$.get(W);return z==null?null:JSON.parse(JSON.stringify(z))})},set:(W,$)=>{if(typeof W!=="string"){return Promise.reject(new TypeError("storage.set: key must be a string"))}let z;try{z=JSON.stringify($)}catch(X){return Promise.reject(new TypeError("storage.set: value must be JSON-serializable ("+String(X)+")"))}if(z===undefined){return Promise.reject(new TypeError("storage.set: value must be JSON-serializable"))}r(W,z,$);const q=JSON.parse(z);return T(()=>_().then((X)=>{if(X===null)return c;if(h.has(W)){if(X.has(W))return i;h.delete(W)}X.set(W,q);return y(X)}))},delete:(W)=>{if(typeof W!=="string"){return Promise.reject(new TypeError("storage.delete: key must be a string"))}return T(()=>_().then(($)=>{if($===null)return c;if(h.has(W)){if($.has(W))return i;h.delete(W)}$.delete(W);return y($)}))},keys:()=>T(_).then((W)=>W===null?[]:Array.from(W.keys()))};window.omelette={writeFile:(W,$)=>k(W,$).then((z)=>{if(!z.persisted&&!z.noHost){throw new Error(z.reason||"write failed")}}),storage:t};if(I&&I!==window){const W=(J,Q)=>{try{I.postMessage({__omelette_log:true,type:J,data:Q},"*")}catch{}};["log","warn","error"].forEach((J)=>{const Q=console[J];console[J]=(...V)=>{const Y=V.map((Z)=>{try{return typeof Z==="object"?JSON.stringify(Z):String(Z)}catch{try{return String(Z)}catch{return"[unstringifiable]"}}}).join(" ");W(J,Y);Q.apply(console,V)}});window.addEventListener("error",(J)=>{const Q=J.target;if(Q&&Q!==window&&Q.tagName){const V=Q.src||Q.href||"";W("resource_error",`${Q.tagName} failed to load: ${V}`)}else{W("error",`${J.message||"Unknown error"} at ${J.filename||"?"}:${J.lineno||0}:${J.colno||0}`)}},true);window.addEventListener("unhandledrejection",(J)=>{const Q=J.reason;const V=Q instanceof Error?`${Q.message} ${Q.stack}`:String(Q);W("error",`Unhandled rejection: ${V}`)});window.addEventListener("click",(J)=>{if(J.defaultPrevented||J.button!==0)return;if(J.metaKey||J.ctrlKey||J.shiftKey||J.altKey)return;const Q=J.composedPath?J.composedPath():[];const V=["button","input","select","textarea","summary","label"];let Y=null;for(const x of Q){if(!(x instanceof Element))continue;if(x.localName==="a"){if(!(x instanceof HTMLAnchorElement))return;Y=x;break}if(V.indexOf(x.localName)!==-1)return}if(!Y)return;if(Y.isContentEditable)return;const Z=Y.closest("[contenteditable]");if(Z&&Z.getAttribute("contenteditable")!=="false")return;const B=(Y.getAttribute("target")||"_self").toLowerCase();if(B!=="_self"&&B!=="_top"&&B!=="_parent")return;let U;try{U=new URL(Y.href)}catch{return}if(U.protocol!=="http:"&&U.protocol!=="https:")return;if(location.origin==="null")return;if(U.origin===location.origin)return;J.preventDefault();window.open(U.href,"_blank","noopener,noreferrer")});const $=()=>{try{I.postMessage({type:"omelette:height",height:document.documentElement.scrollHeight},"*")}catch{}};if(window.ResizeObserver)new ResizeObserver($).observe(document.documentElement);const z=()=>{$();if(!document.querySelector('script[type="text/babel"],script[type="text/jsx"]'))return;const J=()=>document.getElementById("root")||document.querySelector("body > div[id]");const Q=J()?.firstElementChild??null;let V=0;const Y=()=>{const Z=J();if(Z&&Z.firstElementChild!==Q||++V>30){$();return}setTimeout(Y,100)};setTimeout(Y,100)};if(document.readyState==="complete")z();else window.addEventListener("load",z);const q={};let X=0;const H=(J)=>new Promise((Q,V)=>{if(!b.length){V(new Error("claude.complete: no parent origin"));return}const Y=`c${++X}`;const Z=()=>setTimeout(()=>{delete q[Y];V(new Error(`claude.complete: no data for ${u/1000}s`))},u);const B=Z();q[Y]={resolve:Q,reject:V,text:"",t:B,arm:Z};try{for(const U of b){I.postMessage({__om_api:true,id:Y,body:J},U)}}catch(U){clearTimeout(B);delete q[Y];V(U)}});const j=8;const F=async(J,Q)=>{if(!Array.isArray(J.messages)){throw new Error("claude.complete: tools require a messages array")}const V=J.messages.slice();const Y={...J,tools:J.tools.map((U)=>{if(U===null||typeof U!=="object")return U;const x={};for(const K of Object.keys(U)){if(typeof U[K]!=="function")x[K]=U[K]}return x})};const Z=Y.tool_choice;const B=Z!=null&&(Z.type==="any"||Z.type==="tool")?{...Y,tool_choice:Z.disable_parallel_tool_use!==undefined?{type:"auto",disable_parallel_tool_use:Z.disable_parallel_tool_use}:{type:"auto"}}:Y;for(let U=0;U<j;U++){const x=await H({...U===0?Y:B,messages:V});const K=x.message;const M=K&&Array.isArray(K.content)?K.content:null;const L=M?M.filter((D)=>D?.type==="tool_use"):[];if(K?.stop_reason!=="tool_use"||L.length===0){return x.text}const N=[];for(const D of L){const f=Q.get(D.name);if(!f){N.push({type:"tool_result",tool_use_id:D.id,content:`no handler for tool "${D.name}"`,is_error:true});continue}try{const C=await f(D.input);const w=typeof C==="string"?C:R(C)??"";N.push({type:"tool_result",tool_use_id:D.id,content:w})}catch(C){N.push({type:"tool_result",tool_use_id:D.id,content:String(C?.message??C??"tool handler failed"),is_error:true})}}V.push({role:"assistant",content:M},{role:"user",content:N})}throw new Error(`claude.complete: exceeded ${j} tool turns`)};window.claude={complete(J){const Q=J;if(Q!==null&&typeof Q==="object"&&Array.isArray(Q.tools)&&Q.tools.some((V)=>V!==null&&typeof V==="object"&&typeof V.run==="function")){const V=new Map;for(const Y of Q.tools){if(Y!==null&&typeof Y==="object"&&typeof Y.run==="function"){V.set(String(Y.name),Y.run)}}return F(Q,V)}return H(J).then((V)=>V.text)}};const G={};let P=0;k=(J,Q)=>new Promise((V)=>{if(!b.length){V({persisted:false,noHost:true,reason:g});return}const Y=`f${++P}`;const Z=setTimeout(()=>{delete G[Y];V({persisted:false,noHost:true,reason:g})},d);G[Y]={settle:V,t:Z};try{for(const B of b){I.postMessage({__om_file:true,id:Y,op:"write",path:J,content:Q},B)}}catch{clearTimeout(Z);delete G[Y];V({persisted:false,noHost:true,reason:g})}});const R=(J)=>{try{return JSON.stringify(J)}catch{return JSON.stringify(String(J))}};window.addEventListener("message",(J)=>{if(b.indexOf(J.origin)<0)return;if(J.source!==I)return;const Q=J.data;if(!Q)return;if(Q.type==="omelette-preview-refresh"){if(typeof Q.token!=="string"||!/^[0-9a-f.-]+(\.(rc|pr-[0-9]+))?(\.[0-9]+\.[0-9a-f]{16})?$/.test(Q.token))return;const Z=Math.max(1,Math.floor((Q.expiresAt||0)-Date.now()/1000));document.cookie="__Host-omelette-preview="+Q.token+"; Path=/; Secure; SameSite=None; Partitioned; Max-Age="+Z;return}if(Q.__om_file_r){const Z=G[Q.id];if(!Z)return;clearTimeout(Z.t);delete G[Q.id];Z.settle(Q.ok?{persisted:true}:{persisted:false,reason:Q.error||"write failed"});return}if(Q.__om_api_r){const Z=q[Q.id];if(!Z)return;if(Q.error!=null){clearTimeout(Z.t);delete q[Q.id];Z.reject(new Error(Q.error));return}if(Q.chunk!=null){clearTimeout(Z.t);Z.t=Z.arm();Z.text+=Q.chunk;return}if(Q.done){clearTimeout(Z.t);delete q[Q.id];Z.resolve({text:Q.text!=null?Q.text:Z.text,message:Q.message});return}return}if(!Q.__om_eval)return;const V=Q;const Y=(Z)=>{J.source.postMessage({...Z,__om_eval_r:1,id:V.id},J.origin)};try{const Z=(0,eval)(V.code);if(Z&&typeof Z.then==="function"){Z.then((B)=>Y({ok:1,v:R(B)}),(B)=>Y({ok:0,e:String(B)}))}else{Y({ok:1,v:R(Z)})}}catch(Z){Y({ok:0,e:String(Z)})}})}})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  @keyframes fadeUp { from { opacity:0; transform: translateY(18px);} to { opacity:1; transform:translateY(0);} }
+  body { margin:0; background:#0b0e14; }
+  ::selection { background:#c9a24b; color:#0b0e14; }
+</style>
+</helmet>
+
+<div style="background:#0b0e14; color:#f5f3ee; font-family:'Manrope',sans-serif; width:100%; overflow-x:hidden;">
+
+<!-- HEADER -->
+<header style="position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; row-gap:14px; padding:16px clamp(20px,4vw,48px); background:rgba(11,14,20,0.85); backdrop-filter:blur(12px); border-bottom:1px solid rgba(255,255,255,0.08);">
+  <div style="display:flex; flex-direction:column; line-height:1.1;">
+    <span style="font-family:'Newsreader',serif; font-size:20px; letter-spacing:0.06em; color:#f5f3ee;">KARAN SANGOI</span>
+    <span style="font-size:10px; letter-spacing:0.18em; color:#9aa4b2; text-transform:uppercase; margin-top:2px;">Independent Developer</span>
+  </div>
+  <nav style="display:flex; align-items:center; flex-wrap:wrap; gap:clamp(14px,2.5vw,36px);">
+    <a href="#work" style="color:#e5e2da; text-decoration:none; font-size:14px; font-weight:500;">Examples</a>
+    <a href="#steps" style="color:#e5e2da; text-decoration:none; font-size:14px; font-weight:500;">How It Works</a>
+    <a href="#software" style="color:#e5e2da; text-decoration:none; font-size:14px; font-weight:500;">Software</a>
+    <a href="#about" style="color:#e5e2da; text-decoration:none; font-size:14px; font-weight:500;">About</a>
+    <a href="#faq" style="color:#e5e2da; text-decoration:none; font-size:14px; font-weight:500;">FAQ</a>
+    <a href="#contact" style="background:#c9a24b; color:#0b0e14; padding:11px 22px; border-radius:3px; text-decoration:none; font-size:13px; font-weight:700; letter-spacing:0.02em;">Complete My Website</a>
+  </nav>
+  <button style="display:none; background:none; border:none; color:#f5f3ee; font-size:28px; cursor:pointer;">&#9776;</button>
+</header>
+
+<!-- HERO -->
+<section style="position:relative; display:grid; grid-template-columns:repeat(auto-fit, minmax(340px,1fr)); gap:clamp(36px,5vw,60px); padding:clamp(56px,10vw,100px) clamp(20px,5vw,48px) clamp(50px,8vw,90px); max-width:1400px; margin:0 auto; align-items:center;">
+  <div style="position:absolute; top:-120px; left:-200px; width:600px; height:600px; background:radial-gradient(circle, rgba(201,162,75,0.14), transparent 70%); pointer-events:none;"></div>
+  <div style="position:relative; z-index:1; animation: fadeUp 0.8s ease both;">
+    <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(201,162,75,0.4); border-radius:999px; padding:7px 16px; margin-bottom:28px;">
+      <span style="width:6px; height:6px; border-radius:50%; background:#c9a24b;"></span>
+      <span style="font-size:12px; letter-spacing:0.06em; color:#e0c27a;">Received a website preview from me? Start here.</span>
+    </div>
+    <h1 style="font-family:'Newsreader',serif; font-size:clamp(32px,5.5vw,54px); line-height:1.12; font-weight:500; margin:0 0 26px; color:#f7f5f0;">Your new website is already built. <em style="font-style:italic; color:#c9a24b;">Let's make it yours.</em></h1>
+    <p style="font-size:18px; line-height:1.6; color:#b7bcc4; max-width:520px; margin:0 0 32px;">You've seen the preview. In 48 hours it can carry your real photos, your services, your phone number and your own domain — and start bringing you customers.</p>
+    <div style="display:flex; align-items:center; gap:20px; margin-bottom:14px; flex-wrap:wrap;">
+      <a href="#contact" style="background:#c9a24b; color:#0b0e14; padding:16px 30px; border-radius:3px; text-decoration:none; font-size:15px; font-weight:700;">Complete My Website</a>
+      <a href="#work" style="color:#f5f3ee; text-decoration:none; font-size:15px; font-weight:600; border-bottom:1px solid rgba(255,255,255,0.3); padding-bottom:3px;">I'm new here — show me examples</a>
+    </div>
+    <p style="font-size:13px; color:#e0c27a; margin:0 0 40px; max-width:480px;">Your preview stays live for 7 days. After that, it expires.</p>
+    <div style="display:flex; gap:16px; flex-wrap:wrap; border-top:1px solid rgba(255,255,255,0.08); padding-top:28px;">
+      <span style="font-size:13px; color:#c3c7cf; border:1px solid rgba(201,162,75,0.35); border-radius:999px; padding:8px 16px;">48-Hour Website Activation</span>
+      <span style="font-size:13px; color:#c3c7cf; border:1px solid rgba(201,162,75,0.35); border-radius:999px; padding:8px 16px;">Fixed One-Time Pricing</span>
+      <span style="font-size:13px; color:#c3c7cf; border:1px solid rgba(201,162,75,0.35); border-radius:999px; padding:8px 16px;">21-Day Software MVPs</span>
+      <span style="font-size:13px; color:#c3c7cf; border:1px solid rgba(201,162,75,0.35); border-radius:999px; padding:8px 16px;">Direct Founder Involvement</span>
+    </div>
+  </div>
+  <div style="position:relative; z-index:1;">
+    <div style="border-radius:10px; overflow:hidden; border:1px solid rgba(255,255,255,0.1); background:#12161f; box-shadow:0 40px 80px -20px rgba(0,0,0,0.6);">
+      <div style="display:flex; align-items:center; gap:8px; padding:12px 16px; background:#171c28; border-bottom:1px solid rgba(255,255,255,0.08);">
+        <span style="width:10px; height:10px; border-radius:50%; background:#e05c4a;"></span>
+        <span style="width:10px; height:10px; border-radius:50%; background:#e0b04a;"></span>
+        <span style="width:10px; height:10px; border-radius:50%; background:#4ae08c;"></span>
+        <span style="margin-left:12px; font-size:12px; color:#6d7280; background:#0e121a; padding:4px 14px; border-radius:4px;">your-business-preview.com</span>
+      </div>
+      <image-slot id="hero-preview" shape="rect" placeholder="Drop the preview screenshot you sent them" style="width:100%; height:460px;"></image-slot>
+    </div>
+    <div style="margin-top:-24px; margin-left:24px; position:relative; z-index:2; display:inline-block; background:#171c28; border:1px solid rgba(201,162,75,0.35); border-radius:8px; padding:14px 20px; box-shadow:0 20px 40px rgba(0,0,0,0.5);">
+      <div style="font-size:12px; color:#8b909a; margin-bottom:4px;">Preview status</div>
+      <div style="font-family:'Newsreader',serif; font-size:18px; color:#c9a24b;">Active — reserved for 7 days</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<section style="padding:24px clamp(20px,5vw,48px); border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08); background:#0e121a;">
+  <div style="max-width:1400px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px;">
+    <span style="font-size:12px; letter-spacing:0.1em; color:#6d7280; text-transform:uppercase;">Built for owners checking their preview is legit</span>
+    <div style="display:flex; gap:32px; flex-wrap:wrap;">
+      <span style="font-size:13px; color:#b7bcc4;">&#128274; Clear written scope every project</span>
+      <span style="font-size:13px; color:#b7bcc4;">&#128179; Secure invoiced payments</span>
+      <span style="font-size:13px; color:#b7bcc4;">&#127909; Live video calls, no ghosting</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IT DOES FOR YOU -->
+<section style="padding:clamp(60px,10vw,120px) clamp(20px,5vw,48px); max-width:1400px; margin:0 auto;">
+  <div style="max-width:640px; margin-bottom:56px;">
+    <span style="font-size:12px; letter-spacing:0.14em; color:#c9a24b; text-transform:uppercase;">Once it's live</span>
+    <h2 style="font-family:'Newsreader',serif; font-size:clamp(28px,4vw,40px); font-weight:500; margin:14px 0 16px; color:#f7f5f0;">What your website does for you.</h2>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:24px;">
+    <sc-for list="{{ outcomes }}" as="o" hint-placeholder-count="4">
+      <div style="background:#12161f; border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:32px 26px;">
+        <div style="font-family:'Newsreader',serif; font-size:26px; color:#c9a24b; margin-bottom:18px;">{{ o.n }}</div>
+        <h4 style="font-size:16px; font-weight:700; color:#f5f3ee; margin:0 0 10px; line-height:1.4;">{{ o.title }}</h4>
+        <p style="font-size:13.5px; line-height:1.6; color:#9aa4b2; margin:0;">{{ o.desc }}</p>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- HOW IT BECOMES YOURS -->
+<section id="steps" style="padding:clamp(60px,10vw,120px) clamp(20px,5vw,48px); background:#0e121a; border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08);">
+  <div style="max-width:1400px; margin:0 auto;">
+    <div style="max-width:640px; margin-bottom:64px;">
+      <span style="font-size:12px; letter-spacing:0.14em; color:#c9a24b; text-transform:uppercase;">Three steps</span>
+      <h2 style="font-family:'Newsreader',serif; font-size:clamp(28px,4vw,40px); font-weight:500; margin:14px 0 16px; color:#f7f5f0;">How it becomes yours.</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:32px; position:relative; margin-bottom:24px;">
+      <div style="position:absolute; top:22px; left:0; right:0; height:1px; background:rgba(255,255,255,0.1);"></div>
+      <sc-for list="{{ steps }}" as="step" hint-placeholder-count="3">
+        <div style="position:relative;">
+          <div style="width:44px; height:44px; border-radius:50%; background:#0e121a; border:1px solid #c9a24b; color:#c9a24b; display:flex; align-items:center; justify-content:center; font-family:'Newsreader',serif; font-size:16px; margin-bottom:24px; position:relative; z-index:1;">{{ step.n }}</div>
+          <h4 style="font-size:17px; font-weight:700; color:#f5f3ee; margin:0 0 10px;">{{ step.title }}</h4>
+          <p style="font-size:14px; line-height:1.6; color:#9aa4b2; margin:0;">{{ step.desc }}</p>
+        </div>
+      </sc-for>
+    </div>
+    <p style="font-size:12.5px; color:#6d7280; margin:0;">The 48-hour clock starts after your information arrives.</p>
+  </div>
+</section>
+
+<!-- THE 7 DAY WINDOW -->
+<section style="padding:clamp(60px,10vw,120px) clamp(20px,5vw,48px); max-width:1400px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(320px,1fr)); gap:clamp(32px,5vw,64px); align-items:center;">
+  <div>
+    <span style="font-size:12px; letter-spacing:0.14em; color:#c9a24b; text-transform:uppercase;">Why previews expire</span>
+    <h2 style="font-family:'Newsreader',serif; font-size:clamp(26px,3.5vw,36px); font-weight:500; margin:14px 0 22px; color:#f7f5f0;">The 7-day window.</h2>
+    <p style="font-size:15.5px; line-height:1.7; color:#b7bcc4; margin:0 0 18px;">Every preview is built individually for one business — yours — and reserved for you alone while I hold it live.</p>
+    <p style="font-size:15.5px; line-height:1.7; color:#b7bcc4; margin:0;">If you love it, claim it and it becomes your real website. If it's not for you, it quietly disappears after 7 days. No calls, no follow-up, no pressure — just an honest deadline so I can keep building for owners who want theirs.</p>
+  </div>
+  <div style="display:flex; flex-direction:column; gap:14px;">
+    <div style="display:flex; align-items:center; justify-content:space-between; background:#12161f; border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:18px 24px;">
+      <span style="font-size:14px; color:#c3c7cf;">Day 1</span>
+      <span style="font-size:14px; color:#f5f3ee; font-weight:600;">Your preview goes live</span>
+    </div>
+    <div style="display:flex; align-items:center; justify-content:space-between; background:#12161f; border:1px solid rgba(201,162,75,0.35); border-radius:8px; padding:18px 24px;">
+      <span style="font-size:14px; color:#c3c7cf;">Day 2 &#8211; 7</span>
+      <span style="font-size:14px; color:#c9a24b; font-weight:600;">Reserved and waiting for you</span>
+    </div>
+    <div style="display:flex; align-items:center; justify-content:space-between; background:#12161f; border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:18px 24px;">
+      <span style="font-size:14px; color:#c3c7cf;">Day 8</span>
+      <span style="font-size:14px; color:#8b909a; font-weight:600;">Preview expires quietly</span>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOM SOFTWARE MVPs -->
+<section id="software" style="padding:clamp(56px,9vw,100px) clamp(20px,5vw,48px); max-width:1400px; margin:60px auto;">
+  <div style="background:linear-gradient(135deg, #171c28, #12161f); border:1px solid rgba(201,162,75,0.25); border-radius:14px; padding:clamp(28px,5vw,64px);">
+    <div style="max-width:680px; margin-bottom:48px;">
+      <span style="font-size:12px; letter-spacing:0.14em; color:#c9a24b; text-transform:uppercase;">Beyond the website</span>
+      <h2 style="font-family:'Newsreader',serif; font-size:clamp(26px,3.5vw,34px); font-weight:500; margin:14px 0 16px; color:#f7f5f0;">Custom software MVPs in 21 days.</h2>
+      <p style="font-size:15px; line-height:1.6; color:#b7bcc4; margin:0;">Click a card — you probably recognize the problem.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:20px; margin-bottom:48px;">
+      <sc-for list="{{ softwareCards }}" as="c" hint-placeholder-count="4">
+        <div onClick="{{ c.toggle }}" style="background:#0e121a; border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:22px; cursor:pointer; min-height:150px; display:flex; flex-direction:column; justify-content:space-between;">
+          <sc-if value="{{ c.flipped }}" hint-placeholder-val="{{ false }}">
+            <div>
+              <div style="font-size:11px; letter-spacing:0.08em; color:#c9a24b; text-transform:uppercase; margin-bottom:8px;">The fix</div>
+              <div style="font-size:14px; color:#f5f3ee; line-height:1.5;">{{ c.solution }}</div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ c.notFlipped }}" hint-placeholder-val="{{ true }}">
+            <div>
+              <div style="font-size:11px; letter-spacing:0.08em; color:#6d7280; text-transform:uppercase; margin-bottom:8px;">The problem</div>
+              <div style="font-size:14px; color:#c3c7cf; line-height:1.5;">{{ c.problem }}</div>
+            </div>
+          </sc-if>
+          <div style="font-size:11px; color:#6d7280; margin-top:14px;">Tap to {{ c.action }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px; border-top:1px solid rgba(255,255,255,0.08); padding-top:32px;">
+      <div>
+        <div style="font-size:15px; font-weight:700; color:#f5f3ee; margin-bottom:6px;">One call. One clear scope. One fixed price.</div>
+        <div style="font-size:14px; color:#9aa4b2;">A working MVP in your hands in 21 days.</div>
+      </div>
+      <a href="#contact" style="background:#c9a24b; color:#0b0e14; padding:14px 26px; border-radius:3px; text-decoration:none; font-size:14px; font-weight:700; flex-shrink:0;">Tell Me Your Bottleneck</a>
+    </div>
+  </div>
+</section>
+
+<!-- EXAMPLES / SHOWCASE -->
+<section id="work" style="padding:clamp(60px,10vw,120px) clamp(20px,5vw,48px); max-width:1400px; margin:0 auto;">
+  <div style="max-width:640px; margin-bottom:56px;">
+    <span style="font-size:12px; letter-spacing:0.14em; color:#c9a24b; text-transform:uppercase;">Concept previews</span>
+    <h2 style="font-family:'Newsreader',serif; font-size:clamp(28px,4vw,40px); font-weight:500; margin:14px 0 16px; color:#f7f5f0;">See what owners like you received.</h2>
+    <p style="font-size:16px; line-height:1.6; color:#9aa4b2;">These are concept previews built across a few industries. Yours would be built around your business specifically.</p>
+  </div>
+
+  <div style="display:flex; gap:12px; margin-bottom:36px; border-bottom:1px solid rgba(255,255,255,0.08);">
+    <sc-for list="{{ niches }}" as="n" hint-placeholder-count="3">
+      <button onClick="{{ n.select }}" style="{{ n.tabStyle }}">{{ n.label }}</button>
+    </sc-for>
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(360px,1fr)); gap:clamp(32px,5vw,56px); align-items:center;">
+    <div style="border-radius:10px; overflow:hidden; border:1px solid rgba(255,255,255,0.1); background:#12161f; box-shadow:0 30px 60px -20px rgba(0,0,0,0.55);">
+      <div style="display:flex; align-items:center; gap:8px; padding:12px 16px; background:#171c28; border-bottom:1px solid rgba(255,255,255,0.08);">
+        <span style="width:10px; height:10px; border-radius:50%; background:#e05c4a;"></span>
+        <span style="width:10px; height:10px; border-radius:50%; background:#e0b04a;"></span>
+        <span style="width:10px; height:10px; border-radius:50%; background:#4ae08c;"></span>
+        <span style="margin-left:12px; font-size:12px; color:#6d7280; background:#0e121a; padding:4px 14px; border-radius:4px;">{{ activeNicheDemoUrl }}</span>
+        <span style="margin-left:auto; font-size:10px; letter-spacing:0.06em; color:#c9a24b; text-transform:uppercase; border:1px solid rgba(201,162,75,0.4); border-radius:999px; padding:3px 10px;">Concept</span>
+      </div>
+      <image-slot id="{{ activeNicheSlotId }}" shape="rect" placeholder="Drop demo screenshot" style="width:100%; height:420px;"></image-slot>
+    </div>
+    <div>
+      <h3 style="font-family:'Newsreader',serif; font-size:28px; font-weight:500; margin:0 0 20px; color:#f7f5f0;">{{ activeNicheHeadline }}</h3>
+      <sc-for list="{{ activeNicheBullets }}" as="b" hint-placeholder-count="3">
+        <div style="display:flex; gap:12px; margin-bottom:16px; align-items:flex-start;">
+          <span style="color:#c9a24b; font-size:16px; margin-top:1px;">&#10003;</span>
+          <span style="font-size:15px; line-height:1.5; color:#c3c7cf;">{{ b }}</span>
+        </div>
+      </sc-for>
+      <a href="#contact" style="display:inline-block; margin-top:16px; color:#c9a24b; text-decoration:none; font-size:14px; font-weight:700; border-bottom:1px solid rgba(201,162,75,0.4); padding-bottom:2px;">Get a preview for your business &#8594;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="padding:clamp(60px,10vw,120px) clamp(20px,5vw,48px); max-width:1400px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:clamp(32px,5vw,64px); align-items:center;">
+  <div style="border-radius:10px; overflow:hidden; border:1px solid rgba(255,255,255,0.1);">
+    <image-slot id="about-photo" shape="rect" placeholder="Drop a photo of Karan at work" style="width:100%; height:460px;"></image-slot>
+  </div>
+  <div>
+    <span style="font-size:12px; letter-spacing:0.14em; color:#c9a24b; text-transform:uppercase;">About Karan</span>
+    <h2 style="font-family:'Newsreader',serif; font-size:clamp(26px,3.5vw,36px); font-weight:500; margin:14px 0 22px; color:#f7f5f0;">Yes, I'm a real developer.</h2>
+    <p style="font-size:15.5px; line-height:1.7; color:#b7bcc4; margin:0 0 18px;">You got a working preview of your own website, unprompted, and Googled me before replying. Smart. I'm an independent developer who builds websites and software for small businesses across the US — and every preview I send out is a real, working site, not a mockup.</p>
+    <p style="font-size:15.5px; line-height:1.7; color:#b7bcc4; margin:0 0 30px;">If you'd rather see my face before deciding, I'm always happy to hop on a short video call.</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:20px;">
+      <div style="border-left:2px solid #c9a24b; padding-left:16px;">
+        <div style="font-size:13px; font-weight:700; color:#f5f3ee;">Written agreement</div>
+        <div style="font-size:13px; color:#8b909a; margin-top:4px;">Scope, timeline, and price fixed up front.</div>
+      </div>
+      <div style="border-left:2px solid #c9a24b; padding-left:16px;">
+        <div style="font-size:13px; font-weight:700; color:#f5f3ee;">US-friendly hours</div>
+        <div style="font-size:13px; color:#8b909a; margin-top:4px;">I overlap with every US timezone.</div>
+      </div>
+      <div style="border-left:2px solid #c9a24b; padding-left:16px;">
+        <div style="font-size:13px; font-weight:700; color:#f5f3ee;">Secure payments</div>
+        <div style="font-size:13px; color:#8b909a; margin-top:4px;">Invoiced. No wires, no crypto, no gift cards.</div>
+      </div>
+      <div style="border-left:2px solid #c9a24b; padding-left:16px;">
+        <div style="font-size:13px; font-weight:700; color:#f5f3ee;">Free preview first</div>
+        <div style="font-size:13px; color:#8b909a; margin-top:4px;">You see the work before you pay anything.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" style="padding:clamp(60px,10vw,120px) clamp(20px,5vw,48px); background:#0e121a; border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08);">
+  <div style="max-width:1400px; margin:0 auto;">
+    <div style="max-width:640px; margin-bottom:56px;">
+      <span style="font-size:12px; letter-spacing:0.14em; color:#c9a24b; text-transform:uppercase;">What clients say</span>
+      <h2 style="font-family:'Newsreader',serif; font-size:clamp(28px,4vw,40px); font-weight:500; margin:14px 0 16px; color:#f7f5f0;">Placeholder quotes — swap in real ones anytime.</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:28px;">
+      <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="3">
+        <div style="background:#171c28; border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:32px;">
+          <div style="color:#c9a24b; font-size:14px; margin-bottom:16px;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p style="font-size:15px; line-height:1.6; color:#c3c7cf; margin:0 0 24px; font-style:italic;">"{{ t.quote }}"</p>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:40px; height:40px; border-radius:50%; background:#0e121a; border:1px solid rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-size:13px; color:#c9a24b; font-weight:700;">{{ t.initials }}</div>
+            <div>
+              <div style="font-size:13px; font-weight:700; color:#f5f3ee;">{{ t.name }}</div>
+              <div style="font-size:12px; color:#8b909a;">{{ t.role }}</div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" style="padding:clamp(60px,10vw,120px) clamp(20px,5vw,48px); max-width:1400px; margin:0 auto;">
+  <div style="max-width:640px; margin-bottom:56px;">
+    <span style="font-size:12px; letter-spacing:0.14em; color:#c9a24b; text-transform:uppercase;">Investment</span>
+    <h2 style="font-family:'Newsreader',serif; font-size:clamp(28px,4vw,40px); font-weight:500; margin:14px 0 16px; color:#f7f5f0;">Every quote is custom — here's what's always included.</h2>
+    <p style="font-size:16px; line-height:1.6; color:#9aa4b2;">Pricing depends on scope. Every package below includes these fundamentals.</p>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:28px;">
+    <div style="border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:36px; background:#12161f;">
+      <h3 style="font-family:'Newsreader',serif; font-size:22px; color:#f5f3ee; margin:0 0 6px;">Starter Website</h3>
+      <p style="font-size:13px; color:#8b909a; margin:0 0 24px;">One location, ready to convert</p>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <span style="font-size:14px; color:#c3c7cf;">&#10003; 5-page conversion-focused site</span>
+        <span style="font-size:14px; color:#c3c7cf;">&#10003; Mobile-first, fast-loading</span>
+        <span style="font-size:14px; color:#c3c7cf;">&#10003; Your own domain</span>
+        <span style="font-size:14px; color:#c3c7cf;">&#10003; Contact &amp; quote forms</span>
+      </div>
+    </div>
+    <div style="border:1px solid #c9a24b; border-radius:10px; padding:36px; background:#171c28; box-shadow:0 20px 50px -15px rgba(201,162,75,0.25);">
+      <div style="font-size:11px; letter-spacing:0.1em; color:#c9a24b; text-transform:uppercase; margin-bottom:10px;">Most popular</div>
+      <h3 style="font-family:'Newsreader',serif; font-size:22px; color:#f5f3ee; margin:0 0 6px;">Growth Website</h3>
+      <p style="font-size:13px; color:#8b909a; margin:0 0 24px;">Multi-service, built to convert</p>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <span style="font-size:14px; color:#c3c7cf;">&#10003; Everything in Starter</span>
+        <span style="font-size:14px; color:#c3c7cf;">&#10003; Service-area &amp; multi-location pages</span>
+        <span style="font-size:14px; color:#c3c7cf;">&#10003; Analytics &amp; call tracking</span>
+        <span style="font-size:14px; color:#c3c7cf;">&#10003; Reviews &amp; before/after galleries</span>
+      </div>
+    </div>
+    <div style="border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:36px; background:#12161f;">
+      <h3 style="font-family:'Newsreader',serif; font-size:22px; color:#f5f3ee; margin:0 0 6px;">Custom Software MVP</h3>
+      <p style="font-size:13px; color:#8b909a; margin:0 0 24px;">Built around your bottleneck</p>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <span style="font-size:14px; color:#c3c7cf;">&#10003; Scoped on one call</span>
+        <span style="font-size:14px; color:#c3c7cf;">&#10003; Dashboards, booking, automation</span>
+        <span style="font-size:14px; color:#c3c7cf;">&#10003; Working MVP in 21 days</span>
+        <span style="font-size:14px; color:#c3c7cf;">&#10003; Ongoing support available</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="padding:clamp(60px,10vw,120px) clamp(20px,5vw,48px); background:#0e121a; border-top:1px solid rgba(255,255,255,0.08);">
+  <div style="max-width:820px; margin:0 auto;">
+    <div style="margin-bottom:48px;">
+      <span style="font-size:12px; letter-spacing:0.14em; color:#c9a24b; text-transform:uppercase;">Straight answers</span>
+      <h2 style="font-family:'Newsreader',serif; font-size:clamp(28px,4vw,40px); font-weight:500; margin:14px 0 0; color:#f7f5f0;">Questions people ask about their preview.</h2>
+    </div>
+    <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+      <div style="border-bottom:1px solid rgba(255,255,255,0.08);">
+        <button onClick="{{ f.toggle }}" style="width:100%; display:flex; justify-content:space-between; align-items:center; gap:20px; background:none; border:none; padding:24px 0; text-align:left; cursor:pointer;">
+          <span style="font-size:16px; font-weight:600; color:#f5f3ee;">{{ f.q }}</span>
+          <span style="color:#c9a24b; font-size:20px; flex-shrink:0;">{{ f.icon }}</span>
+        </button>
+        <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+          <p style="font-size:15px; line-height:1.7; color:#9aa4b2; margin:0 0 24px;">{{ f.a }}</p>
+        </sc-if>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- FOOTER / CONTACT -->
+<footer id="contact" style="padding:clamp(56px,9vw,110px) clamp(20px,5vw,48px) 60px; max-width:1400px; margin:0 auto;">
+  <div style="text-align:center; margin-bottom:70px;">
+    <h2 style="font-family:'Newsreader',serif; font-size:clamp(28px,5vw,44px); font-weight:500; margin:0 0 20px; color:#f7f5f0;">Claim your website before it expires.</h2>
+    <p style="font-size:16px; color:#9aa4b2; margin:0 0 36px;">Reply to the email that brought you here, or complete it below.</p>
+    <a href="mailto:hello@imkaransangoi.com" style="display:inline-block; background:#c9a24b; color:#0b0e14; padding:18px 36px; border-radius:3px; text-decoration:none; font-size:15px; font-weight:700;">Complete My Website</a>
+  </div>
+  <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; padding-top:40px; border-top:1px solid rgba(255,255,255,0.08);">
+    <div>
+      <span style="font-family:'Newsreader',serif; font-size:18px; color:#f5f3ee;">KARAN SANGOI</span>
+      <div style="font-size:13px; color:#8b909a; margin-top:8px;">imkaransangoi.com</div>
+      <div style="font-size:13px; color:#8b909a; margin-top:4px;">hello@imkaransangoi.com</div>
+    </div>
+    <div style="display:flex; gap:32px;">
+      <a href="#work" style="color:#9aa4b2; text-decoration:none; font-size:13px;">Examples</a>
+      <a href="#steps" style="color:#9aa4b2; text-decoration:none; font-size:13px;">How It Works</a>
+      <a href="#pricing" style="color:#9aa4b2; text-decoration:none; font-size:13px;">Pricing</a>
+      <a href="#faq" style="color:#9aa4b2; text-decoration:none; font-size:13px;">FAQ</a>
+    </div>
+    <div style="font-size:12px; color:#5f636d;">&copy; 2026 Karan Sangoi. All rights reserved.</div>
+  </div>
+</footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    activeNiche: 0,
+    openFaqIndex: 0,
+    flippedCards: {},
+  };
+
+  nicheData = [
+    { id: 'pest', label: 'Pest Control', demoUrl: 'pestcontrol-preview.com', slotId: 'demo-pest',
+      headline: 'Turn "who do I call" into a booked job in under 60 seconds.',
+      bullets: ['Instant quote request form above the fold', 'Click-to-call sticky bar on mobile', 'Google reviews pulled in live'] },
+    { id: 'hvac', label: 'HVAC', demoUrl: 'hvac-preview.com', slotId: 'demo-hvac',
+      headline: 'Emergency repair requests routed straight to your phone.',
+      bullets: ['24/7 emergency banner with live availability', 'Financing calculator built in', 'Service-area map for every zip you cover'] },
+    { id: 'movers', label: 'Movers', demoUrl: 'movers-preview.com', slotId: 'demo-movers',
+      headline: 'Instant moving quotes that convert browsers into deposits.',
+      bullets: ['3-step quote wizard, no phone tag needed', 'Photo gallery of trucks and crews for trust', 'Deposit checkout built into the site'] },
+  ];
+
+  outcomeData = [
+    { n: '01', title: 'Customers find you from their phone', desc: 'A fast, mobile-first site keeps you visible wherever they\'re searching.' },
+    { n: '02', title: 'They call instead of scrolling past', desc: 'Clear calls-to-action and click-to-call turn visits into phone calls.' },
+    { n: '03', title: 'Your reviews finally work for you', desc: 'Real reviews shown up front build trust before they even call.' },
+    { n: '04', title: 'You look as credible as the biggest name in town', desc: 'A polished site puts you on equal footing with bigger competitors.' },
+  ];
+
+  stepsData = [
+    { n: '01', title: 'Send your photos & details', desc: 'A short form — takes about 15 minutes of your time.' },
+    { n: '02', title: 'Review it and request changes', desc: 'Tell me what to adjust; I make it match your business exactly.' },
+    { n: '03', title: 'It goes live on your domain', desc: 'Connected, published, and ready for customers within 48 hours.' },
+  ];
+
+  softwareData = [
+    { problem: 'Leads lost in WhatsApp chats', solution: 'A simple system that captures every lead automatically.' },
+    { problem: 'Quotes written by hand every night', solution: 'Instant quote calculators built into your site.' },
+    { problem: 'Spreadsheets nobody trusts', solution: 'A dashboard showing the real numbers, always up to date.' },
+    { problem: 'The same customer questions eating your day', solution: 'A booking or FAQ flow that answers before they call.' },
+  ];
+
+  faqData = [
+    { q: 'Is my preview really free?', a: "Yes. Looking at it costs nothing. You only pay if you decide to make it live as your real website." },
+    { q: 'What happens after 7 days?', a: "It quietly expires. No calls, no follow-up, no pressure — just an honest deadline so I can keep building previews for other owners." },
+    { q: 'Who owns the website once it\'s live?', a: "You do. Your domain, your content, your site — it's yours, not a rental." },
+    { q: 'How do payments work safely?', a: 'Invoices only. No wire transfers, no gift cards, no crypto, and never before you\'ve seen and approved the work.' },
+    { q: 'Where are you based?', a: "I work with US-based small businesses full time and keep hours that overlap every US timezone. Happy to hop on a video call before you decide anything." },
+  ];
+
+  testimonialData = [
+    { quote: 'Add a real client quote here — something specific about the result, like calls booked or time saved.', name: 'Client Name', role: 'Owner, Pest Control Co.', initials: 'CN' },
+    { quote: 'Swap this placeholder for feedback from an actual HVAC or moving client once you have it.', name: 'Client Name', role: 'Owner, HVAC Co.', initials: 'CN' },
+    { quote: 'A short, specific testimonial builds more trust than a long generic one — keep it concrete.', name: 'Client Name', role: 'Owner, Moving Co.', initials: 'CN' },
+  ];
+
+  renderVals() {
+    const active = this.nicheData[this.state.activeNiche];
+    return {
+      niches: this.nicheData.map((n, i) => ({
+        label: n.label,
+        select: () => this.setState({ activeNiche: i }),
+        tabStyle: `background:none; border:none; padding:14px 22px; cursor:pointer; font-size:14px; font-weight:600; color:${i === this.state.activeNiche ? '#c9a24b' : '#8b909a'}; border-bottom:2px solid ${i === this.state.activeNiche ? '#c9a24b' : 'transparent'}; margin-bottom:-1px;`,
+      })),
+      activeNicheDemoUrl: active.demoUrl,
+      activeNicheSlotId: active.slotId,
+      activeNicheHeadline: active.headline,
+      activeNicheBullets: active.bullets,
+      outcomes: this.outcomeData,
+      steps: this.stepsData,
+      softwareCards: this.softwareData.map((c, i) => {
+        const flipped = !!this.state.flippedCards[i];
+        return {
+          problem: c.problem,
+          solution: c.solution,
+          flipped,
+          notFlipped: !flipped,
+          action: flipped ? 'see the problem' : 'see the fix',
+          toggle: () => this.setState(s => ({ flippedCards: { ...s.flippedCards, [i]: !s.flippedCards[i] } })),
+        };
+      }),
+      testimonials: this.testimonialData,
+      faqs: this.faqData.map((f, i) => ({
+        q: f.q,
+        a: f.a,
+        open: this.state.openFaqIndex === i,
+        icon: this.state.openFaqIndex === i ? '\u2212' : '+',
+        toggle: () => this.setState({ openFaqIndex: this.state.openFaqIndex === i ? -1 : i }),
+      })),
+    };
+  }
+}
+
+</script>
+</body>
+</html>
