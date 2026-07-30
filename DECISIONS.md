@@ -63,3 +63,21 @@ brief, July 2026) + chat decisions. This file is the single source of truth.
 - D17. ignytlabs.com = structural inspiration only; never copy wording,
   branding, visual design.
 - D18. No deploy to the live domain without Karan's explicit approval.
+
+## Positioning change by Karan (2026-07-30) — supersedes D14 hero lock
+
+- D19. Two offers, stated everywhere as the core promise:
+  "Websites in 48 Hours · Custom Software MVPs in 21 Days".
+- D20. The site speaks to THE VISITOR, not about Karan/process. Primary
+  visitor = a business owner who ALREADY received their demo website by
+  email. Hero and page open as a continuation of that email: your website
+  is already built — here is how it becomes yours in 48 hours, and what it
+  does for YOUR business. Secondary path for new/cold visitors.
+- D21. Demo expiry is stated openly as honest urgency: previews stay live
+  for 7 days, then expire. Real policy, plainly worded, no fake timers.
+- D22. Software track is them-centric: their problems → AI solutions →
+  simple onboarding → working MVP in 21 days.
+- D23. QA gates before anything is shown to Karan: (a) audience-centric
+  copy audit — every section must talk about the reader; (b) visual QA at
+  minimum five widths: 390 / 768 / 1024 / 1280 / 1680, screenshots reviewed
+  by Claude.
