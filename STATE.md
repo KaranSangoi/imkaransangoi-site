@@ -34,3 +34,41 @@ Last updated: 2026-07-30 by Codex (V3 them-first implementation)
 - **Environment — screenshots:** no browser automation tool is installed; screenshot QA remains a hard handoff to Claude.
 - **Question for Karan:** confirm final project fee, approved testimonial wording, portrait and LinkedIn URL before publish.
 - No deployment was attempted.
+
+---
+
+## V4 dark identity + headline narrative handoff
+
+Last updated: 2026-07-30 by Codex
+
+### Done
+
+- Applied D24 and `DESIGN_SPEC_V4_DARK.md` sections 1–4 across the shared site: deep navy/charcoal bands, warm-white copy, accessible gold accents, dark bordered panels, dark translucent navigation, gold actions, and dark footer treatment.
+- Upgraded the homepage hero to one large `your-business-preview.com` frame with an AWAITING-KARAN screenshot placeholder, overlapping seven-day status card, the four approved chips, and the new owner-legitimacy trust bar.
+- Updated navigation labels and identity lockup exactly to the V4 direction.
+- Applied the approved `HEADLINE_NARRATIVE.md` wording and order. The website story now completes through outcomes, three steps, honest expiry, samples, testimonials and pricing before the explicit software bridge and 21-day MVP story; FAQ and final website CTA close the page.
+- Updated the shared footer headline to “Tell me what you need next.”
+- Retained all V3 body copy, qualifying language, sample disclaimers, pricing/testimonial placeholders and honesty constraints. Each approved testimonial identity still appears exactly once.
+- Kept the reveal fallback timer and reduced-motion override. Responsive layouts collapse at the existing 1023/900/600px gates, covering the specified 390/768/1024/1280/1680 widths without intentional viewport overflow.
+- Removed build-time Google font fetching so production builds are deterministic in the restricted environment. CSS continues to request Fraunces and Space Grotesk first with robust serif/sans fallbacks; the production host should self-host the approved font files when they are available.
+
+### QA / checks
+
+- `npm run build` passes with all 18 static pages generated and exported.
+- `npx tsc --noEmit` passes.
+- `git diff --check` passes.
+- Programmatic WCAG contrast checks pass: muted/body copy on page 8.72:1, muted/body copy on panels 7.86:1, gold-soft on page 11.23:1, and dark text on gold controls 7.47:1.
+- Programmatic headline-order and testimonial-identity audits pass.
+
+### Next
+
+1. Claude: perform the required visual screenshot review at exactly 390, 768, 1024, 1280 and 1680px in a browser-enabled environment.
+2. Claude/Karan: provide distributable Fraunces and Space Grotesk files for self-hosting if avoiding the current system-font fallback on restricted/offline clients is required.
+3. Karan: provide the real preview screenshot, portrait, verified LinkedIn URL, final testimonial wording and final pricing.
+4. After Karan’s explicit approval only: connect Vercel and switch the domain.
+
+### Blocked / questions
+
+- Screenshot capture is unavailable in this container because no Chromium/Chrome browser is installed. Responsive CSS and overflow constraints were reviewed programmatically, but Claude’s five-width screenshot QA remains required.
+- Network policy returns HTTP 403 for Google Fonts, GitHub raw font assets and npm font packages; approved fonts therefore cannot yet be vendored.
+- No deployment was attempted.
