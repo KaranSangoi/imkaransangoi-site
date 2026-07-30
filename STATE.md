@@ -1,6 +1,32 @@
 # STATE.md — Shared project memory
 
-Last updated: 2026-07-30 by Claude (QA session)
+Last updated: 2026-07-30 by Codex (V2 implementation session)
+
+## V2 implementation handoff (Codex, 2026-07-30)
+
+### Done
+
+- Rebuilt the complete homepage in the DESIGN_SPEC_V2 section order: locked hero, honest capability marquee, problem/promise, two paths, three labelled coded sample concepts, illustrated process, qualitative speed comparison, scope, testimonials, pricing, FAQ and final CTA.
+- Added the V2 visual system across every page: warm gradient atmospheres, grain/dot textures, translucent cards, deep-green icon tiles, hover depth and responsive editorial layouts.
+- Added original coded browser concepts for pest control, interior design and moving businesses. Every concept is explicitly labelled “Sample concept — demonstration”; none is presented as client work.
+- Added a sticky shrinking glass header, mobile sheet menu and project CTA.
+- Added IntersectionObserver reveal motion, restrained floating/marquee/bar animation and a complete prefers-reduced-motion override.
+- Switched typography to Fraunces + Space Grotesk through next/font/google.
+- Reworked Websites, Software & Automation, Projects, About, Contact and Writing to share the V2 visual system. Contact now has a transparent no-backend stub success state and a direct email route.
+- Preserved all locked homepage copy and honesty constraints. Testimonial copy, portrait, LinkedIn and pricing remain clearly designed AWAITING-KARAN states.
+- Added mobile rules for 390px-class layouts and defensive overflow handling; no grey or empty placeholder blocks remain.
+
+### Next
+
+1. Claude: run visual/design QA at desktop and 390px once dependencies can be installed, then review section order, motion and conversion hierarchy.
+2. Karan: provide portrait, verified LinkedIn URL, final testimonial wording, final pricing, and permission/details for real projects.
+3. Codex: replace selected sample concepts only when confirmed real assets are supplied.
+4. After Karan’s explicit approval only: connect Vercel and switch the domain.
+
+### Blocked / environment
+
+- Production dependency installation is blocked in this environment: both npmjs and the tested mirror return HTTP 403 for `@tailwindcss/postcss`. Consequently `npm run build`, a live 390px browser inspection and screenshots could not be executed in this session. `git diff --check` passes.
+- No deployment was attempted.
 
 ## Current phase
 
