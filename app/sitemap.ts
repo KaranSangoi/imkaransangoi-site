@@ -1,1 +1,2 @@
+export const dynamic = "force-static";
 import type {MetadataRoute} from "next";import {getPosts} from "@/lib/posts";export default function sitemap():MetadataRoute.Sitemap{const base="https://imkaransangoi.com";return["","/websites","/software","/projects","/about","/contact","/blog",...getPosts().map(p=>`/blog/${p.slug}`)].map(route=>({url:`${base}${route}`,lastModified:new Date(),changeFrequency:(route===""?"weekly":"monthly") as "weekly"|"monthly",priority:route===""?1:.7}))}
