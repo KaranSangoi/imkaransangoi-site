@@ -72,3 +72,51 @@ Last updated: 2026-07-30 by Codex
 - Screenshot capture is unavailable in this container because no Chromium/Chrome browser is installed. Responsive CSS and overflow constraints were reviewed programmatically, but Claude’s five-width screenshot QA remains required.
 - Network policy returns HTTP 403 for Google Fonts, GitHub raw font assets and npm font packages; approved fonts therefore cannot yet be vendored.
 - No deployment was attempted.
+
+---
+
+## V6 — approved Claude Design homepage implemented
+
+Last updated: 2026-07-30 by Claude (design lead)
+
+### Done
+
+- Implemented the approved Claude Design file `Karan Sangoi Homepage.dc.html` as the live homepage (`app/page.tsx`), replacing the prior V4/V5 component-based homepage.
+- Ported the `.dc.html` (which used Claude Design's `<x-dc>`, `sc-for`/`sc-if`, `<image-slot>` and a `DCLogic` component) into a single Next.js client component with faithful inline styles and a scoped CSS reset so the legacy global element rules in `globals.css` do not interfere.
+- Wired the three interactive behaviours with React state: niche tabs in the Examples showcase (Pest Control / HVAC / Movers), click-to-flip software problem/solution cards (keyboard accessible), and the FAQ accordion (first item open by default).
+- New sections vs V5: on-page **About** ("Yes, I'm a real developer"), **3-tier pricing** (Starter / Growth / Custom Software MVP, no fabricated numbers), the **Day 1 / Day 2–7 / Day 8** expiry timeline, and the numbered "What your website does for you" and "How it becomes yours" grids.
+- Fonts resolve through the existing next/font CSS variables (`--font-display` Newsreader, `--font-body` Manrope) — matches the V5 typography fix.
+- Image slots render as tasteful branded placeholders (icon + neutral caption like "Your website preview" / "Karan at work"), NOT the design's editor-facing "drop image here" text.
+- Primary CTAs point to the real completion flow (`/websites`) and the software page (`/software`) rather than only in-page anchors; secondary/nav anchors preserved.
+
+### Honesty compliance
+
+- Samples labelled "Concept" and described as concept previews, not claimed client work.
+- Testimonials shipped as clearly-labelled placeholders ("Placeholder quotes — swap in real ones anytime", generic "Client Name") — no fabricated names attached to fabricated quotes.
+- Pricing shows what's always included with "Every quote is custom" — no invented figures.
+
+### QA / checks
+
+- `npx tsc --noEmit` passes.
+- `npm run build` passes: 18/18 static pages, homepage 7.38 kB.
+- Local Playwright screenshots at 1280 / 768 / 390 px: layout faithful; grids collapse to single column on mobile; nav wraps; no horizontal overflow. Probe confirms body `#0b0e14`, h1 Newsreader 54px.
+- Pushed to `main` (commit `bdbf24a`) and confirmed live on Vercel — hero, header, gold italic headline, preview mockup and status card all render as approved.
+
+### Deviations from the raw .dc.html (intentional, for a live production site)
+
+1. Editor "drop image" placeholder text → branded placeholder graphics (assets AWAITING-KARAN).
+2. Fixed `repeat(3,1fr)` testimonial/pricing grids → `auto-fit minmax` so they stack on mobile (locked responsive requirement).
+3. Main CTAs routed to `/websites` and `/software` instead of in-page `#contact`/mailto.
+
+### Still AWAITING-KARAN
+
+- Real photo of Karan (About + can seed hero/demo slots).
+- Verified LinkedIn URL.
+- Project/preview screenshots for the hero and niche demo slots.
+- Final testimonial wording (and whether to use real client names).
+- Final pricing.
+
+### Next
+
+1. Karan: review the live V6 homepage and supply the assets above.
+2. Claude/Codex: swap placeholders for real assets/copy once provided; consider whether the shared Header/Footer on the other pages should adopt the V6 header treatment for consistency (currently only the homepage uses the design's own header/footer).
