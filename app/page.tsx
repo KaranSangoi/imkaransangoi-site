@@ -138,6 +138,7 @@ export default function Home() {
         .dc-home a{color:inherit;text-decoration:none}
         .dc-home button{font:inherit}
         .dc-home .dc-nav a.navlink:hover{color:${GOLD}}
+        .dc-home .sw-card:hover,.dc-home .sw-card:focus-visible{transform:translateY(-4px);border-color:rgba(201,162,75,0.6) !important;background:#141b26 !important}
         .dc-home ::selection{background:${GOLD};color:#0b0e14}
         @media(prefers-reduced-motion:reduce){.dc-home *{animation:none !important}}
         @media(max-width:640px){
@@ -229,8 +230,8 @@ export default function Home() {
             {outcomes.map((o) => (
               <div key={o[0]} style={{ background: "#12161f", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, padding: "32px 26px" }}>
                 <div style={{ fontFamily: DISPLAY, fontSize: 26, color: GOLD, marginBottom: 18 }}>{o[0]}</div>
-                <h4 style={{ fontSize: 16, fontWeight: 700, color: "#f5f3ee", margin: "0 0 10px", lineHeight: 1.4 }}>{o[1]}</h4>
-                <p style={{ fontSize: 13.5, lineHeight: 1.6, color: "#9aa4b2", margin: 0 }}>{o[2]}</p>
+                <h4 style={{ fontSize: 17.5, fontWeight: 700, color: "#f5f3ee", margin: "0 0 12px", lineHeight: 1.35 }}>{o[1]}</h4>
+                <p style={{ fontSize: 15, lineHeight: 1.6, color: "#b7bcc4", margin: 0 }}>{o[2]}</p>
               </div>
             ))}
           </div>
@@ -248,8 +249,8 @@ export default function Home() {
               {steps.map((s) => (
                 <div key={s[0]} style={{ position: "relative" }}>
                   <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#0e121a", border: `1px solid ${GOLD}`, color: GOLD, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: DISPLAY, fontSize: 16, marginBottom: 24, position: "relative", zIndex: 1 }}>{s[0]}</div>
-                  <h4 style={{ fontSize: 17, fontWeight: 700, color: "#f5f3ee", margin: "0 0 10px" }}>{s[1]}</h4>
-                  <p style={{ fontSize: 14, lineHeight: 1.6, color: "#9aa4b2", margin: 0 }}>{s[2]}</p>
+                  <h4 style={{ fontSize: 18, fontWeight: 700, color: "#f5f3ee", margin: "0 0 12px" }}>{s[1]}</h4>
+                  <p style={{ fontSize: 15, lineHeight: 1.6, color: "#b7bcc4", margin: 0 }}>{s[2]}</p>
                 </div>
               ))}
             </div>
@@ -281,31 +282,33 @@ export default function Home() {
             <div style={{ maxWidth: 680, marginBottom: 48 }}>
               <span style={eyebrow}>Beyond the website</span>
               <h2 style={{ fontFamily: DISPLAY, fontSize: "clamp(26px,3.5vw,34px)", fontWeight: 500, margin: "14px 0 16px", color: "#f7f5f0" }}>Custom software MVPs in 21 days.</h2>
-              <p style={{ fontSize: 15, lineHeight: 1.6, color: "#b7bcc4", margin: 0 }}>Click a card — you probably recognize the problem.</p>
+              <p style={{ fontSize: 17, lineHeight: 1.6, color: "#c7ccd4", margin: 0 }}>Click a card — you probably recognize the problem.</p>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px,1fr))", gap: 20, marginBottom: 48 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px,1fr))", gap: 22, marginBottom: 48 }}>
               {software.map((c, i) => {
                 const isF = !!flipped[i];
                 return (
-                  <div key={i} role="button" tabIndex={0}
+                  <div key={i} role="button" tabIndex={0} className="sw-card" aria-pressed={isF}
                     onClick={() => setFlipped((s) => ({ ...s, [i]: !s[i] }))}
                     onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setFlipped((s) => ({ ...s, [i]: !s[i] })); } }}
-                    style={{ background: "#0e121a", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 8, padding: 22, cursor: "pointer", minHeight: 150, display: "flex", flexDirection: "column", justifyContent: "space-between", outline: "none" }}>
+                    style={{ background: isF ? "#141b26" : "#0e121a", border: `1px solid ${isF ? "rgba(201,162,75,0.45)" : "rgba(255,255,255,0.1)"}`, borderRadius: 10, padding: "26px 24px", cursor: "pointer", minHeight: 194, display: "flex", flexDirection: "column", justifyContent: "space-between", outline: "none", transition: "transform .2s, border-color .2s, background .2s" }}>
                     <div>
-                      <div style={{ fontSize: 11, letterSpacing: "0.08em", color: isF ? GOLD : "#6d7280", textTransform: "uppercase", marginBottom: 8 }}>{isF ? "The fix" : "The problem"}</div>
-                      <div style={{ fontSize: 14, color: isF ? "#f5f3ee" : "#c3c7cf", lineHeight: 1.5 }}>{isF ? c[1] : c[0]}</div>
+                      <div style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: "0.1em", color: isF ? GOLD : "#9aa4b2", textTransform: "uppercase", marginBottom: 12 }}>{isF ? "The fix" : "The problem"}</div>
+                      <div style={{ fontSize: 17.5, fontWeight: 500, color: isF ? "#ffffff" : "#e7e4dc", lineHeight: 1.5 }}>{isF ? c[1] : c[0]}</div>
                     </div>
-                    <div style={{ fontSize: 11, color: "#6d7280", marginTop: 14 }}>Tap to {isF ? "see the problem" : "see the fix"}</div>
+                    <div style={{ display: "flex", alignItems: "center", gap: 7, fontSize: 13, fontWeight: 600, color: isF ? "#e0bd77" : "#9aa4b2", marginTop: 20 }}>
+                      <span style={{ fontSize: 15, lineHeight: 1 }}>↻</span> Tap to {isF ? "see the problem" : "see the fix"}
+                    </div>
                   </div>
                 );
               })}
             </div>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 24, borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 32 }}>
               <div>
-                <div style={{ fontSize: 15, fontWeight: 700, color: "#f5f3ee", marginBottom: 6 }}>One call. One clear scope. One fixed price.</div>
-                <div style={{ fontSize: 14, color: "#9aa4b2" }}>A working MVP in your hands in 21 days.</div>
+                <div style={{ fontSize: 18, fontWeight: 700, color: "#f5f3ee", marginBottom: 8 }}>One call. One clear scope. One fixed price.</div>
+                <div style={{ fontSize: 15.5, color: "#b7bcc4" }}>A working MVP in your hands in 21 days.</div>
               </div>
-              <Link href="/software" style={{ background: GOLD, color: "#0b0e14", padding: "14px 26px", borderRadius: 3, fontSize: 14, fontWeight: 700, flexShrink: 0 }}>Tell Me Your Bottleneck</Link>
+              <Link href="/software" style={{ background: GOLD, color: "#0b0e14", padding: "15px 28px", borderRadius: 3, fontSize: 15, fontWeight: 700, flexShrink: 0 }}>Tell Me Your Bottleneck</Link>
             </div>
           </div>
         </section>
@@ -315,7 +318,7 @@ export default function Home() {
           <div style={{ maxWidth: 640, marginBottom: 56 }}>
             <span style={eyebrow}>Concept previews</span>
             <h2 style={{ fontFamily: DISPLAY, fontSize: "clamp(28px,4vw,40px)", fontWeight: 500, margin: "14px 0 16px", color: "#f7f5f0" }}>See what owners like you received.</h2>
-            <p style={{ fontSize: 16, lineHeight: 1.6, color: "#9aa4b2" }}>These are concept previews built across a few industries. Yours would be built around your business specifically.</p>
+            <p style={{ fontSize: 16.5, lineHeight: 1.6, color: "#b7bcc4" }}>These are concept previews built across a few industries. Yours would be built around your business specifically.</p>
           </div>
           <div style={{ display: "flex", gap: 12, marginBottom: 36, borderBottom: "1px solid rgba(255,255,255,0.08)", flexWrap: "wrap" }}>
             {niches.map((n, i) => (
