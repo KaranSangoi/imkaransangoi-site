@@ -134,6 +134,7 @@ export default function Home() {
         @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
         .dc-home *{box-sizing:border-box}
         .dc-home section{max-width:none;margin:0;padding:0;background:none}
+        .dc-home footer{background:none;border:0;color:inherit}
         .dc-home h1,.dc-home h2,.dc-home h3,.dc-home h4,.dc-home p,.dc-home figure{margin:0}
         .dc-home a{color:inherit;text-decoration:none}
         .dc-home button{font:inherit}
